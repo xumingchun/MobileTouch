@@ -7,18 +7,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
-        (function(){
-            var arr = ["바나나","오렌지","사과","딸기"];
+        $(document).ready(function(){
+            var ta = ['aa']
+            var tt = ["바나나","오렌지","사과","딸기"];
 
-     
-        })();
+            var arr = ["바나나","오렌지","사과","딸기"];
+            var cun = [];
+            ta.map(function(v,i){
+                $(".btnList").append("<button>"+ v +"</button>");
+            });
+            arr.map(function(v,i){
+                $(".newbtnList").append("<button>"+ v +"</button>");
+
+            });
+            $(".newbtnList").on('click', 'button', function(){
+                // arr[0] =  바나나
+                //arr[index] = 
+                $(".btnList").append("<button>"+ $(this).text() +"</button>");
+                $(this).remove();
+                
+                cun.push($(this).text());
+                arr.slice(arr.indexOf($(this).text()), 1);
+            })
+            $(".btnList").on('click', 'button', function(){
+                // arr[0] =  바나나
+                //arr[index] = 
+                $(".newbtnList").append("<button>"+ $(this).text() +"</button>");
+                $(this).remove();
+                
+                arr.push($(this).text());
+                cun.slice(cun.indexOf($(this).text()), 1);
+            })
+            $('.tasd').click(function() {
+                $(".newbtnList").html('');
+                $(".btnList").html('');
+                ta.map(function(v,i){
+                    $(".btnList").append("<button>"+ v +"</button>");
+                });
+                tt.map(function(v,i){
+                    $(".newbtnList").append("<button>"+ v +"</button>");
+                });
+            })
+        });
+
         
     </script>
+    <style>
+        .btnList {
+            margin-bottom:10px;
+            border-bottom:1px solid #000;
+        }
+    </style>
 </head>
 <body>
     <div id="Wrap">
         <div class="btnList"></div>
         <div class="newbtnList"></div>
+        <button class='tasd'>chr</button>
     </div>
 </body>
 </html>
